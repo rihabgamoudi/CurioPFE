@@ -1,0 +1,42 @@
+<b style="font-size: 3em; color: rgb(0, 0, 0); margin: 10px;">Units-Measures</b>
+<br>
+<br>
+<div class="btn-group btn-primary">
+    <button routerLink="add" [disabled]="selectedUnits.length>0" class="btn">Add</button>
+    <button routerLink="update/{{id}}" [disabled]="selectedUnits.length>1|| selectedUnits.length==0"  class="btn btn-success">Modify</button>
+    <button class="btn btn-danger" [disabled]="selectedUnits.length==0" (click)="showClick()">Delete</button>
+  </div>
+  
+  
+  <clr-datagrid  (clrDgRefresh)="refresh($event)"  [(clrDgSelected)]="selectedUnits"  (clrDgSelectedChange)="unitsSelect($event)">
+      <clr-dg-column>Units ID</clr-dg-column>
+      <clr-dg-column>Name</clr-dg-column>
+      <clr-dg-column>description</clr-dg-column>
+      <clr-dg-column >createAt</clr-dg-column>
+   
+      <clr-dg-row *clrDgItems="let unity of data" [clrDgItem]="data"  [clrDgItem]="unity">
+         
+        <clr-dg-cell>{{unity.id}}</clr-dg-cell>
+        <clr-dg-cell>{{unity.name}}</clr-dg-cell> 
+        <clr-dg-cell>{{unity.description}}</clr-dg-cell>
+        <clr-dg-cell>{{unity.createAt}}</clr-dg-cell>
+      </clr-dg-row>
+      <clr-dg-detail *clrIfDetail="let detail">
+        <clr-dg-detail-header> <b style=" color: rgb(60, 58, 230)">id</b>:{{ detail.id }}</clr-dg-detail-header>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">Name</b>:{{ detail.name }}</clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">Description</b> :{{ detail.description }}</clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">Type</b> :{{ detail.type }}</clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">Value</b> :{{ detail.value }}</clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">createAt</b> :{{ detail.createAt }}</clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">updateAt</b> :{{ detail.updateAt }}</clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">Active</b> :{{ detail.isActive }}</clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">createBy</b> :{{ detail.createBy }}</clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">updatedBy</b> :{{ detail.updatedBy }}</clr-dg-detail-body>
+      </clr-dg-detail>
+    
+      <clr-dg-footer></clr-dg-footer>
+  </clr-datagrid>
+
+  <app-delete-units *ngIf="show" [listUnits]="list" (closed)="close()" (saved)="save()"></app-delete-units>
+  
+    

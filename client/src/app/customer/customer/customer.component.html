@@ -1,0 +1,44 @@
+<b style="font-size: 3em; color: rgb(0, 0, 0); margin: 10px;">Customer</b>
+<br>
+<br>
+<div class="btn-group btn-primary">
+    <button routerLink="add-customer"  [disabled]="selectedCustomer.length>0" class="btn">Add</button>
+    <button routerLink="update-customer/{{id}}" [disabled]="selectedCustomer.length>1 || selectedCustomer.length==0" class="btn btn-success">Modify</button>
+    <button class="btn btn-danger" [disabled]="selectedCustomer.length==0" (click)="showClick()">Delete</button>
+  </div>
+  
+   
+  <clr-datagrid (clrDgRefresh)="refresh($event)"  [(clrDgSelected)]="selectedCustomer"  (clrDgSelectedChange)="userSelect($event)">
+      <clr-dg-column>Customer ID</clr-dg-column>
+      <clr-dg-column>firstName</clr-dg-column>
+      <clr-dg-column>lastName</clr-dg-column>
+      <clr-dg-column>Email</clr-dg-column>
+   
+      <clr-dg-row *clrDgItems="let customer of data" [clrDgItem]="data" [clrDgItem]="customer">
+         
+          <clr-dg-cell>{{customer.id}}</clr-dg-cell>
+          <clr-dg-cell> {{customer.firstName}}</clr-dg-cell>
+          <clr-dg-cell>{{customer.lastName}}</clr-dg-cell>
+          <clr-dg-cell>{{customer.email}}    </clr-dg-cell>
+      </clr-dg-row>
+      <clr-dg-detail *clrIfDetail="let detail">
+        <clr-dg-detail-header> <b style=" color: rgb(60, 58, 230)">id</b>:{{ detail.id }}</clr-dg-detail-header>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">firstName</b>:{{ detail.firstName }}</clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">lastName</b> :{{ detail.lastName}}</clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">Email</b> :{{ detail.email }}</clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">Adress</b> :{{ detail.adress }}</clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">Telephone</b> :{{ detail.telephone }}</clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">createAt</b> :{{ detail.createAt }}</clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">updateAt</b> :{{ detail.updateAt }}</clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">Active</b> :{{ detail.isActive }}</clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">createBy</b> :{{ detail.createBy }}</clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">updatedBy</b> :{{ detail.updatedBy }}</clr-dg-detail-body>
+     
+
+      </clr-dg-detail>
+  
+      <clr-dg-footer></clr-dg-footer>
+  </clr-datagrid>
+  <app-delete-customer *ngIf="show" [listCustomer]="list" (closed)="close()" (saved)="save()"></app-delete-customer>
+  
+    

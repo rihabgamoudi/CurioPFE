@@ -1,0 +1,50 @@
+
+<b style="font-size: 3em; color: rgb(0, 0, 0); margin: 10px;">Mod Payment</b>
+<br><br>
+<div class="btn-group btn-primary">
+    <button routerLink="add"   [disabled]="selectedPayment.length>0"class="btn">Add</button>
+    <button class="btn btn-danger" [disabled]="selectedPayment.length==0" (click)="showClick()">Delete</button>
+</div>
+
+<clr-datagrid (clrDgRefresh)="refresh($event)" [(clrDgSelected)]="selectedPayment"
+(clrDgSelectedChange)="payementySelect($event)">
+    <clr-dg-column>Payment ID</clr-dg-column>
+    <clr-dg-column>Mod-payment</clr-dg-column>
+    <clr-dg-column>Description</clr-dg-column>
+    <clr-dg-column>CreateAt</clr-dg-column> 
+
+    <clr-dg-row *clrDgItems="let payment of data" [clrDgItem]="data" [clrDgItem]="payment">
+
+        <clr-dg-cell>{{payment.id}}</clr-dg-cell>
+        <clr-dg-cell *ngIf="payment.payment=='Cash'"><cds-icon shape="dollar"></cds-icon>
+            {{payment.payment}}</clr-dg-cell>
+        <clr-dg-cell *ngIf="payment.payment=='creditCards'"><cds-icon shape="credit-card"></cds-icon>
+            {{payment.payment}}</clr-dg-cell>
+        <clr-dg-cell *ngIf="payment.payment=='debitCards'"><cds-icon shape="wallet"></cds-icon>
+            {{payment.payment}}</clr-dg-cell>
+        <clr-dg-cell *ngIf="payment.payment=='Checks'"><cds-icon shape="e-check"></cds-icon>
+            {{payment.payment}}</clr-dg-cell>
+        <clr-dg-cell *ngIf="payment.payment=='onlinePayments'"><cds-icon shape="wifi"></cds-icon>
+            {{payment.payment}}</clr-dg-cell>
+        <clr-dg-cell>{{payment.description}} </clr-dg-cell>
+        <clr-dg-cell>{{payment.createAt}} </clr-dg-cell>
+
+
+    </clr-dg-row>
+    <clr-dg-detail *clrIfDetail="let detail">
+        <clr-dg-detail-header> <b style=" color: rgb(60, 58, 230)">id</b>:{{ detail.id }}</clr-dg-detail-header>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">Name</b>:{{ detail.name}}</clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">Description</b> : {{ detail.description}} </clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">Mod Payment</b> : {{ detail.payment }} </clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">createAt</b> :{{ detail.createAt }}</clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">Active</b> :{{ detail.isActive }}</clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">createBy</b> :{{ detail.createBy }}</clr-dg-detail-body>
+      
+     
+    
+      </clr-dg-detail>
+
+    <clr-dg-footer></clr-dg-footer>
+</clr-datagrid>
+<app-delete-payment *ngIf="show" [listPayment]="list" (closed)="close()"></app-delete-payment>
+ 

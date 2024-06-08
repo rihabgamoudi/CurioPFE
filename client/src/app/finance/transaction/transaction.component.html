@@ -1,0 +1,52 @@
+<b style="font-size: 3em; color: rgb(0, 0, 0); margin: 10px;">Transaction</b>
+<br><br>
+<div class="btn-group btn-primary">
+   
+    <button routerLink="add-transaction" [disabled]="selectedTransaction.length>0" class="btn">Add</button>
+    <button routerLink="update-transaction/{{id}}" [disabled]="selectedTransaction.length>1|| selectedTransaction.length==0" class="btn btn-success">Modify</button>
+    <button class="btn btn-danger" [disabled]="selectedTransaction.length==0" (click)="showClick()">Delete</button>
+</div>
+
+
+<clr-datagrid (clrDgRefresh)="refresh($event)" [(clrDgSelected)]="selectedTransaction"
+    (clrDgSelectedChange)="transactionSelect($event)">
+    <clr-dg-column>Accessoire ID</clr-dg-column>
+    <clr-dg-column>Name</clr-dg-column>
+    <clr-dg-column>Description</clr-dg-column>
+    <clr-dg-column>createAt</clr-dg-column>
+
+    <clr-dg-row *clrDgItems="let transaction of data" [clrDgItem]="data" [clrDgItem]="transaction">
+
+        <clr-dg-cell>{{transaction.id}}</clr-dg-cell>
+        <clr-dg-cell> {{transaction.name}}</clr-dg-cell>
+        <clr-dg-cell>{{transaction.description}}</clr-dg-cell>
+        <clr-dg-cell>{{transaction.createAt}} </clr-dg-cell>
+    </clr-dg-row>
+    <clr-dg-detail *clrIfDetail="let detail">
+        <clr-dg-detail-header> <b style=" color: rgb(60, 58, 230)">id</b>:{{ detail.id }}</clr-dg-detail-header>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">Name</b>:{{ detail.name}}</clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">Description</b> : {{ detail.description}} </clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">Amount</b> : {{ detail.amount }} </clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">isCompleted</b> : {{ detail.isCompleted}} </clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">isCredit</b>:{{ detail.isCredit}}</clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">sourceId</b> : {{ detail.sourceId}} </clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">bank</b> : {{ detail.ban }} </clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">checkNumber</b> : {{ detail.checkNumber}} </clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">checkImage</b> : {{ detail.checkImage}} </clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">dueDate</b>:{{ detail.dueDate}}</clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">isOver</b> : {{ detail.isOver}} </clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">operationNumber</b> : {{ detail.operationNumber }} </clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">createAt</b> :{{ detail.createAt }}</clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">updateAt</b> :{{ detail.updateAt }}</clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">Active</b> :{{ detail.isActive }}</clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">createBy</b> :{{ detail.createBy }}</clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">updatedBy</b> :{{ detail.updatedBy }}</clr-dg-detail-body>
+     
+    
+      </clr-dg-detail>
+    
+
+    <clr-dg-footer></clr-dg-footer>
+</clr-datagrid>
+<app-delete-transaction *ngIf="show" [listTransaction]="list" (closed)="close()"
+    (saved)="save()"></app-delete-transaction> 

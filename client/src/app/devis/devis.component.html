@@ -1,0 +1,47 @@
+<b style="font-size: 3em; color: rgb(0, 0, 0); margin: 10px;">Devis</b>
+
+<br>
+<br>
+
+<div class="btn-group btn-primary">
+  <button routerLink="add-devis" [disabled]="selectedDevis.length>0" class="btn">Add</button>
+  <button routerLink="update-devise/{{id}}" [disabled]="selectedDevis.length>1|| selectedDevis.length==0" class="btn btn-success">Modify</button>
+  <button class="btn btn-danger"  [disabled]="selectedDevis.length==0" (click)="showClick()">Delete</button>
+
+  <button routerLink="devise-commande/{{id}}" class="btn" [disabled]="selectedDevis.length>1|| selectedDevis.length==0 ">OrderDevis</button>
+</div>
+<br>
+ 
+
+
+<clr-datagrid (clrDgRefresh)="refresh($event)" [(clrDgSelected)]="selectedDevis"
+  (clrDgSelectedChange)="devisSelect($event)">
+  <clr-dg-column>DevisID</clr-dg-column>
+  <clr-dg-column>Customer</clr-dg-column>
+  <clr-dg-column>createAt</clr-dg-column>
+  <clr-dg-row *clrDgItems="let devis of data" [clrDgItem]="data" [clrDgItem]="devis">
+    <clr-dg-cell>{{devis.id}}</clr-dg-cell>
+    <clr-dg-cell>{{devis.CustomerId?.firstName}} {{devis.CustomerId?.lastName}}</clr-dg-cell>
+    <clr-dg-cell>{{devis.createAt}}</clr-dg-cell>
+
+  </clr-dg-row>
+  <clr-dg-footer></clr-dg-footer>
+  <clr-dg-detail *clrIfDetail="let detail">
+    <clr-dg-detail-header> <b style=" color: rgb(60, 58, 230)">id</b>:{{ detail.id }}</clr-dg-detail-header>
+    <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">Customer</b>:{{ detail.CustomerId.firstName }}{{ detail.CustomerId.lastName }}</clr-dg-detail-body>
+    <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">Quantity</b> : {{ detail?.deviceDetail?.[0]?.quantity }} </clr-dg-detail-body>
+    <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">TotalTTC</b> : {{ detail?.deviceDetail?.[0]?.TotalTTC }} </clr-dg-detail-body>
+    <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">Product</b> : {{ detail?.deviceDetail?.[0]?.productId.name}} </clr-dg-detail-body>
+    <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">createAt</b> :{{ detail.createAt }}</clr-dg-detail-body>
+    <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">updateAt</b> :{{ detail.updateAt }}</clr-dg-detail-body>
+    <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">Active</b> :{{ detail.isActive }}</clr-dg-detail-body>
+    <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">createBy</b> :{{ detail.createBy }}</clr-dg-detail-body>
+    <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">updatedBy</b> :{{ detail.updatedBy }}</clr-dg-detail-body>
+ 
+
+  </clr-dg-detail>
+
+</clr-datagrid>
+
+
+<app-delete-devis *ngIf="show" [listDevis]="list" (closed)="close()" (saved)="save()"></app-delete-devis>

@@ -1,0 +1,50 @@
+<clr-stack-view>
+    <clr-stack-header>Price</clr-stack-header>
+
+
+    <clr-stack-block [clrStackViewLevel]="1">
+        <clr-stack-label>Detail</clr-stack-label>
+
+        <clr-stack-block [clrStackViewLevel]="2">
+            <clr-stack-label>Id</clr-stack-label>
+            <clr-stack-content>{{price.id}}</clr-stack-content>
+        </clr-stack-block>
+        <clr-stack-block [clrStackViewLevel]="2">
+            <clr-stack-label>priceExcludingTax</clr-stack-label>
+            <clr-stack-content>{{price.priceExcludingTax}}</clr-stack-content>
+        </clr-stack-block>
+        <clr-stack-block [clrStackViewLevel]="2">
+            <clr-stack-label>priceTTC</clr-stack-label>
+            <clr-stack-content>{{price.priceTTC}}</clr-stack-content>
+        </clr-stack-block>
+        <clr-stack-block [clrStackViewLevel]="2">
+            <clr-stack-label>retailPrice</clr-stack-label>
+            <clr-stack-content>{{price.retailPrice}}</clr-stack-content>
+        </clr-stack-block>
+        <clr-stack-block [clrStackViewLevel]="2">
+            <clr-stack-label>wholesalePrice</clr-stack-label>
+            <clr-stack-content>{{price.wholesalePrice}}</clr-stack-content>
+        </clr-stack-block>
+        <clr-stack-block [clrStackViewLevel]="2">
+            <clr-stack-label>createAt</clr-stack-label>
+            <clr-stack-content>{{price.createAt}}</clr-stack-content>
+        </clr-stack-block>
+        <clr-stack-block [clrStackViewLevel]="2">
+            <clr-stack-label>updateAt</clr-stack-label>
+            <clr-stack-content>{{price.updateAt}}</clr-stack-content>
+        </clr-stack-block>
+        <clr-stack-block [clrStackViewLevel]="2">
+            <clr-stack-label>Active</clr-stack-label>
+            <clr-stack-content>{{price.isActive}}</clr-stack-content>
+        </clr-stack-block>
+        <clr-stack-block [clrStackViewLevel]="2">
+            <clr-stack-label>createBy</clr-stack-label>
+            <clr-stack-content>{{price.createBy}}</clr-stack-content>
+        </clr-stack-block>
+        <clr-stack-block [clrStackViewLevel]="2">
+            <clr-stack-label>updatedBy</clr-stack-label>
+            <clr-stack-content>{{price.updatedBy}}</clr-stack-content>
+        </clr-stack-block>
+    </clr-stack-block>
+
+</clr-stack-view>

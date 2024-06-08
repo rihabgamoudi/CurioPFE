@@ -1,0 +1,61 @@
+<b style="font-size: 3em; color: rgb(0, 0, 0); margin: 10px;">Order</b>
+<br>
+<br>
+<div class="btn-group btn-primary">
+    <button routerLink="add-order" [disabled]="selectedCommande.length>0" class="btn">Add</button>
+    <button routerLink="update-order/{{id}}" [disabled]="selectedCommande.length>1 || selectedCommande.length==0" class="btn btn-success">Modify</button>
+    <button class="btn btn-danger"  [disabled]="selectedCommande.length==0" (click)="showClick()">Delete</button>
+    <button  [disabled]="selectedCommande.length>1 || selectedCommande.length==0" class="btn btn-success"   (click)="updateIsValid(selectedCommande[0].id)">IsValid</button>
+    
+  </div>
+  
+  
+  <clr-datagrid (clrDgRefresh)="refresh($event)"  [(clrDgSelected)]="selectedCommande"  (clrDgSelectedChange)="commandSelect($event)">
+      <clr-dg-column>orderID</clr-dg-column>
+      <clr-dg-column>Customer</clr-dg-column>
+      <clr-dg-column>Transaction</clr-dg-column>
+      <clr-dg-column>createAt</clr-dg-column>
+      <clr-dg-column>isValid</clr-dg-column>
+      <clr-dg-row *clrDgItems="let command of data" [clrDgItem]="data"  [clrDgItem]="command" >
+        <clr-dg-cell>{{command.id}}</clr-dg-cell>
+        <clr-dg-cell>{{command.CustomerId?.firstName}} {{command.CustomerId?.lastName}}</clr-dg-cell>
+        <clr-dg-cell>{{command?.montantTotal}} </clr-dg-cell>
+        <clr-dg-cell>{{command.createAt}}</clr-dg-cell>
+        <clr-dg-cell *ngIf="command.isValid; else dangerBadge">
+          <span class="badge badge-success">
+            {{ command.isValid }}
+            <span class="clr-sr-only"></span>
+          </span>
+        </clr-dg-cell>
+        
+        <ng-template #dangerBadge>
+          <clr-dg-cell>
+            <span class="badge badge-danger">
+              False
+              <span class="clr-sr-only"></span>
+            </span>
+          </clr-dg-cell> 
+        </ng-template>
+         
+      </clr-dg-row> 
+      <clr-dg-detail *clrIfDetail="let detail">
+        <clr-dg-detail-header> <b style=" color: rgb(60, 58, 230)">id</b>:{{ detail.id }}</clr-dg-detail-header>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">Customer</b>:{{ detail.CustomerId.firstName }}{{ detail.CustomerId.lastName }}</clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">Transaction</b> :{{ detail.montantTotal}}</clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">Quantity</b> : {{ detail?.CommandDetail?.[0]?.quantity }} </clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">TotalTTC</b> : {{ detail?.CommandDetail?.[0]?.TotalTTC }} </clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">Product</b> : {{ detail?.CommandDetail?.[0]?.productId.name}} </clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">createAt</b> :{{ detail.createAt }}</clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">updateAt</b> :{{ detail.updateAt }}</clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">Active</b> :{{ detail.isActive }}</clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">createBy</b> :{{ detail.createBy }}</clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">updatedBy</b> :{{ detail.updatedBy }}</clr-dg-detail-body>
+     
+
+      </clr-dg-detail>
+      
+      <clr-dg-footer></clr-dg-footer>
+  </clr-datagrid>   
+  <app-delete-commande *ngIf="show" [listCommand]="list" (closed)="close()" (saved)="save()"></app-delete-commande>
+  
+     

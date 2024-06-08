@@ -1,0 +1,144 @@
+<span>
+  <span><a routerLink="../../">Transaction</a></span> /
+  <span><a>Modify</a></span>
+</span>
+<section>
+  <h3>Modify Transaction</h3>
+  <clr-alert clrAlertType="success" *ngIf="show" >
+      <clr-alert-item>
+       
+        Addition of Accessory {{name}} was successfully completed
+     
+      </clr-alert-item> 
+    </clr-alert>
+  <br>
+<form clrStepper [formGroup]="transactionForm" (ngSubmit)="submit()">
+  <clr-stepper-panel formGroupName="nameForm"> 
+    <clr-step-title>Name Description</clr-step-title>
+  
+    <clr-step-content *clrIfExpanded>
+      <clr-input-container>
+        <label> Name</label>
+        <input clrInput formControlName="name" />
+        <clr-control-error *clrIfError="'required'">name Required</clr-control-error>
+      </clr-input-container>
+      <clr-input-container>
+        <label>Description</label>
+        <input clrInput formControlName="description" />
+      
+      </clr-input-container>
+      <button clrStepButton="next">next</button>
+    </clr-step-content>
+  </clr-stepper-panel>
+
+  <clr-stepper-panel formGroupName="stringStepper">
+    <clr-step-title> Bank checkNumber checkImage</clr-step-title>
+  
+    <clr-step-content *clrIfExpanded>
+      <clr-input-container>
+        <label> Bank</label>
+        <input clrInput formControlName="ban" />
+        <clr-control-error *clrIfError="'required'">Ban Required</clr-control-error>
+      </clr-input-container>
+
+      <clr-input-container>
+        <label>checkNumber</label>
+        <input clrInput formControlName="checkNumber" />
+        <clr-control-error *clrIfError="'required'">checkNumber Required</clr-control-error>
+      </clr-input-container>
+      
+      <clr-input-container>
+        <label>checkImage</label>
+        <input clrInput formControlName="checkImage" />
+        <clr-control-error *clrIfError="'required'">checkImage Required</clr-control-error>
+      </clr-input-container>
+
+      <button clrStepButton="next">next</button>
+    </clr-step-content>
+  </clr-stepper-panel>
+
+  <clr-stepper-panel formGroupName="numberStepper">
+    <clr-step-title> Amount sourceId operationNumber</clr-step-title>
+  
+    <clr-step-content *clrIfExpanded>
+      <clr-input-container>
+        <label> Amount</label>
+        <input clrInput type="number" formControlName="amount" />
+        <clr-control-error *clrIfError="'required'">amount Required</clr-control-error>
+      </clr-input-container>
+
+      <clr-input-container>
+        <label>sourceId</label>
+        <input clrInput type="number" formControlName="sourceId" />
+        <clr-control-error *clrIfError="'required'">sourceId Required</clr-control-error>
+      </clr-input-container>
+      
+      <clr-input-container>
+        <label>operationNumber</label>
+        <input clrInput type="number" formControlName="operationNumber" />
+        <clr-control-error *clrIfError="'required'">operationNumber Required</clr-control-error>
+      </clr-input-container>
+
+      <button clrStepButton="next">next</button>
+    </clr-step-content>
+  </clr-stepper-panel>
+
+  <clr-stepper-panel formGroupName="bolleanStepper">
+    <clr-step-title> isCompleted isCredit isOver</clr-step-title>
+  
+    <clr-step-content *clrIfExpanded>
+      <clr-toggle-container>
+        <label> isCompleted</label>
+        <clr-toggle-wrapper>
+          <input type="checkbox" clrToggle value="option1"  formControlName="isCompleted" />
+          
+        </clr-toggle-wrapper>
+      </clr-toggle-container>
+
+      <clr-toggle-container>
+        <label>isCredit</label>
+        <clr-toggle-wrapper>
+          <input type="checkbox" clrToggle value="option1"  formControlName="isCredit" />
+          
+        </clr-toggle-wrapper>
+      </clr-toggle-container>
+      
+      
+      <clr-toggle-container>
+        <label>isOver</label>
+        <clr-toggle-wrapper>
+          <input type="checkbox" clrToggle value="option1"  formControlName="isOver" />
+  
+        </clr-toggle-wrapper>
+      </clr-toggle-container>
+
+      <button clrStepButton="next">next</button>
+    </clr-step-content>
+  </clr-stepper-panel>
+
+  <clr-stepper-panel formGroupName="date">
+    <clr-step-title>dueDate</clr-step-title>
+    <clr-step-content *clrIfExpanded>
+      <clr-input-container>
+        <label> dueDate </label>
+        <input type="date" clrInput formControlName="dueDate" />
+      </clr-input-container>
+
+      <!-- <button clrStepButton="submit">submit</button> -->
+    </clr-step-content>
+  </clr-stepper-panel>
+
+
+  <div class="btn-group btn-outline-primary">
+    <button class="btn btn-sm" routerLink="../../" [disabled]="!show">
+      <clr-icon shape="undo"></clr-icon> Back
+    </button>
+    <button class="btn btn-sm"   type="submit" [disabled]="transactionForm.invalid|| show" >
+      <clr-icon shape="plus"></clr-icon> Save
+    </button>
+  
+ 
+</div>
+
+  
+</form>

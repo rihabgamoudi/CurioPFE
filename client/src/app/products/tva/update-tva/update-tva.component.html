@@ -1,0 +1,52 @@
+<span>
+    <span><a routerLink="../../">Tva</a></span> /
+    <span><a>Update</a></span>
+  </span>
+  <section>
+    <h3>Update Tva</h3>
+    <clr-alert clrAlertType="success" *ngIf="show" >
+      <clr-alert-item>
+       
+        Addition of Tva {{name}} was successfully completed
+     
+      </clr-alert-item> 
+    </clr-alert> 
+    <br>  
+    
+    <form clrForm [formGroup]="tvaForm" (ngSubmit)="submit()" >
+        <clr-input-container>
+            <label>Name*</label>
+            <input clrInput type="text"  formControlName="name"  pattern="[A-Z]+"  required/>
+            <clr-control-error  > This field is required ! </clr-control-error> 
+        </clr-input-container>
+        <clr-textarea-container>
+          <label>Description*</label>
+          <textarea clrTextarea  formControlName="description" required></textarea>
+        </clr-textarea-container>
+        <clr-combobox-container>
+          <label>Value</label>
+          <clr-combobox formControlName="value" required>
+            <clr-options>
+              <clr-option *ngFor="let value of values;" [clrValue]="value">{{ value.name }}</clr-option>
+            </clr-options>
+          </clr-combobox>
+          </clr-combobox-container>
+      
+      
+         <br>
+        <label class="alert-sm">* This field is required ! </label>
+        <br><br>
+  
+        <div class="btn-group btn-outline-primary">
+            <button class="btn btn-sm"routerLink="../../" [disabled]="!show" >
+              <clr-icon shape="undo"></clr-icon> Back
+            </button>
+            <button class="btn btn-sm" type="submit" [disabled]="tvaForm.invalid|| show" >
+              <clr-icon shape="plus"></clr-icon> Save
+            </button>
+           
+  
+        </div>
+    </form>
+  </section>
+  

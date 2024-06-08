@@ -1,0 +1,97 @@
+<clr-vertical-nav-group routerLinkActive="active" >
+    <cds-icon shape="grid-view" clrVerticalNavIcon></cds-icon>
+    Products
+    <clr-vertical-nav-group-children>
+        <a clrVerticalNavLink routerLink="/products" routerLinkActive="active"> 
+            <cds-icon shape="view-list"></cds-icon>
+            Details of products
+        </a>
+       <a clrVerticalNavLink routerLink="/products/units-measures"  routerLinkActive="active">
+          <cds-icon shape="volume"></cds-icon>
+          Units of Measures
+       </a>
+       <a clrVerticalNavLink  routerLink="/products/tva" routerLinkActive="active">
+         <cds-icon shape="factory"></cds-icon>
+         TVA
+      </a>
+       <a clrVerticalNavLink  routerLink="/products/price" routerLinkActive="active">
+          <cds-icon shape="dollar"></cds-icon>
+          Price
+       </a>
+       <a clrVerticalNavLink routerLink="/products/accessoire"routerLinkActive="active">
+          <cds-icon shape="digital-signature"></cds-icon>
+          Accessory
+       </a>
+       <a clrVerticalNavLink routerLink="/products/category" routerLinkActive="active">
+          <cds-icon shape="tree-view"></cds-icon>
+          Category
+       </a>
+
+  
+       <a clrVerticalNavLink routerLink="/products/marks"routerLinkActive="active">
+          <cds-icon shape="bookmark"></cds-icon>
+          Marks
+       </a>
+            <!-- <a clrVerticalNavLink routerLink="" routerLinkActive="active">
+          <cds-icon shape="help-info"></cds-icon>
+          Warranty-Information
+       </a> -->
+ 
+    </clr-vertical-nav-group-children>
+ </clr-vertical-nav-group>
+ <clr-vertical-nav-group routerLinkActive="active">
+   <cds-icon shape="users" clrVerticalNavIcon></cds-icon>
+    Users
+    <clr-vertical-nav-group-children>
+       <a clrVerticalNavLink routerLink="/users" routerLinkActive="active">
+         <cds-icon shape="user"></cds-icon>
+          user
+       </a>
+    </clr-vertical-nav-group-children>
+    <clr-vertical-nav-group-children>
+      
+      <a clrVerticalNavLink routerLink="/customer" routerLinkActive="active">
+         <cds-icon shape="accessibility-2" clrVerticalNavIcon></cds-icon>
+         Customer
+      </a>
+     
+   </clr-vertical-nav-group-children>
+ </clr-vertical-nav-group>
+ <clr-vertical-nav-group routerLinkActive="active">
+   <cds-icon shape="terminal" clrVerticalNavIcon></cds-icon>
+   Order
+    <clr-vertical-nav-group-children>
+       <a clrVerticalNavLink routerLink="commande/" routerLinkActive="active">
+        
+          Order
+       </a>
+       <clr-vertical-nav-group-children>
+         <a clrVerticalNavLink routerLink="devis/" routerLinkActive="active">
+           Devis
+         </a>  
+      </clr-vertical-nav-group-children>
+        <!-- <clr-vertical-nav-group-children>
+         <a clrVerticalNavLink routerLink="commande/invoice" routerLinkActive="active">
+            invoice
+         </a>  
+      </clr-vertical-nav-group-children>  -->
+    </clr-vertical-nav-group-children>
+ </clr-vertical-nav-group>
+ <clr-vertical-nav-group routerLinkActive="active">
+   <cds-icon shape="coin-bag" clrVerticalNavIcon></cds-icon>
+    Finance
+    <clr-vertical-nav-group-children>
+       <a clrVerticalNavLink routerLink="finance/transaction" routerLinkActive="active">
+        
+         Transaction
+       </a>
+       
+    </clr-vertical-nav-group-children>
+    <clr-vertical-nav-group-children>
+      <a clrVerticalNavLink routerLink="finance/payment-method" routerLinkActive="active">
+         payment method
+      </a>
+      
+   </clr-vertical-nav-group-children>
+ </clr-vertical-nav-group>
+ 

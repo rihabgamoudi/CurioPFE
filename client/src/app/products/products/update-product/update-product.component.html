@@ -1,0 +1,253 @@
+<span>
+  <span><a routerLink="../../">Product</a></span> /
+  <span><a>Modify</a></span>
+</span>
+<section>
+  <h3>Modify Product</h3>
+  <clr-alert clrAlertType="success" *ngIf="show" >
+    <clr-alert-item>
+     
+      Addition of Product {{name}} was successfully completed
+   
+    </clr-alert-item> 
+  </clr-alert>
+  <br>
+<form clrStepper [formGroup]="form" (ngSubmit)="submit()">
+  <clr-stepper-panel formGroupName="name">
+    <clr-step-title>Name</clr-step-title>
+    <clr-control-error  > This field is required ! </clr-control-error> 
+    <clr-step-content *clrIfExpanded>
+      <clr-input-container>
+        <label> Name </label>
+        <input clrInput formControlName="productName" />
+      </clr-input-container>
+      <clr-input-container>
+        <label> Description </label>
+        <input clrInput formControlName="productDescription" />
+      </clr-input-container>
+
+      <button clrStepButton="next">next</button>
+    </clr-step-content>
+  </clr-stepper-panel>
+  <clr-stepper-panel formGroupName="categoryMark">
+    <clr-step-title>Category Mark</clr-step-title>
+
+    <clr-step-content *clrIfExpanded>
+
+      <clr-combobox-container>
+        <label>Category </label> 
+        <clr-combobox formControlName="categoryName" name="myState"   (clrSelectionChange)="openChange($event)">
+          <clr-options>
+            <clr-option *clrOptionItems="let  categ of dataCategory; field: 'name'" [clrValue]="categ" > 
+              <!-- <cds-icon shape="world" role="img" aria-label="World is turning"></cds-icon> -->
+              <cds-icon shape="key"></cds-icon>
+              {{ categ.name }}
+            </clr-option>
+          </clr-options>
+        </clr-combobox>
+      </clr-combobox-container>
+      <clr-combobox-container>
+        <label>Mark </label>
+        <clr-combobox formControlName="markName" name="myState"  (clrSelectionChange)="openChangeMark($event)">
+          <clr-options>
+            <clr-option *clrOptionItems="let  mark of dataMark; field: 'name'" [clrValue]="mark">
+              <!-- <cds-icon shape="world" role="img" aria-label="World is turning"></cds-icon> -->
+              <cds-icon shape="key"></cds-icon>
+              {{ mark.name }}
+            </clr-option>
+          </clr-options>
+        </clr-combobox>
+      
+          <clr-control-error>There was an error</clr-control-error>
+        </clr-combobox-container>
+
+
+      <button clrStepButton="next">next</button>
+    </clr-step-content>
+  </clr-stepper-panel>
+
+
+  <clr-stepper-panel formGroupName="accessoireColor">
+      <clr-step-title>Accessory Color</clr-step-title>
+      <clr-control-error  > This field is required ! </clr-control-error> 
+     <clr-step-content *clrIfExpanded>
+      <clr-input-container>
+        <label> Color </label>
+        <input type="color" clrInput formControlName="detailColor" />
+      </clr-input-container>
+      <clr-combobox-container>
+        <label> Accessory </label>
+        <clr-combobox formControlName="accessoireName" name="myState"(clrSelectionChange)="openChangeAccessoire($event)">
+          <clr-options>
+            <clr-option *clrOptionItems="let  access of dataAccessoire; field: 'name'" [clrValue]="access">
+              <!-- <cds-icon shape="world" role="img" aria-label="World is turning"></cds-icon> -->
+              <cds-icon shape="key"></cds-icon>
+              {{ access.name }}
+            </clr-option>
+          </clr-options> 
+        </clr-combobox>
+        
+       
+        <clr-control-error>There was an error</clr-control-error>
+      </clr-combobox-container>
+
+      <button clrStepButton="next">next</button>
+    </clr-step-content>
+  </clr-stepper-panel>
+  <clr-stepper-panel formGroupName="TVA">
+    <clr-step-title>TVA</clr-step-title>
+  
+    <clr-step-content *clrIfExpanded>
+  
+      <clr-combobox-container>
+        <label>TVA</label>
+        <clr-combobox formControlName="tvaName" name="myState"  (clrSelectionChange)="openChangeTVA($event)">
+          <clr-options>
+            <clr-option *clrOptionItems="let tva of dataTVA; field: 'name'" [clrValue]="tva">
+              <cds-icon shape="key"></cds-icon>
+              {{ tva.name }}
+            </clr-option>
+          </clr-options>
+        </clr-combobox>
+  
+  
+        <clr-control-error>There was an error</clr-control-error>
+      </clr-combobox-container>
+  
+      <clr-input-container>
+        <label> tva </label>
+        <!-- Assurez-vous d'accéder à la bonne valeur -->
+        <input type="number" clrInput formControlName="Tva"   />{{ form.get('TVA.Tva')?.value }}
+      </clr-input-container>
+  
+      <button clrStepButton="next">next</button>
+    </clr-step-content>
+  </clr-stepper-panel>
+  <clr-stepper-panel formGroupName="price">
+    <clr-step-title>Price</clr-step-title>
+
+    <clr-step-content *clrIfExpanded>
+     
+
+      <clr-combobox-container>
+        <label>Price</label>
+        <clr-combobox formControlName="priceName" name="myState"  (clrSelectionChange)="openChangePrice($event)">
+          <clr-options>
+            <clr-option *clrOptionItems="let  price of dataPrice; field: 'name'" [clrValue]="price">
+              <!-- <cds-icon shape="world" role="img" aria-label="World is turning"></cds-icon> -->
+              <cds-icon shape="key"></cds-icon>
+              {{ price.name }}
+            </clr-option>
+          </clr-options>
+        </clr-combobox>
+       
+  
+        
+        <clr-control-error>There was an error</clr-control-error>
+      </clr-combobox-container>
+
+      <clr-input-container>
+          <label> priceExcludingTax </label>
+          <input type="number" clrInput formControlName="priceExcludingTax"  />{{ price.priceExcludingTax}}
+        </clr-input-container>
+
+     <clr-input-container>
+            <label> TTC </label>
+            <input type="number" clrInput formControlName="TTC" />{{ price.priceTTC}}
+        </clr-input-container>
+
+
+
+      <button clrStepButton="next">next</button>
+    </clr-step-content>
+  </clr-stepper-panel>
+
+  <clr-stepper-panel formGroupName="units">
+    <clr-step-title>Units-measures</clr-step-title>
+
+    <clr-step-content *clrIfExpanded>
+
+      <clr-combobox-container>
+        <label>Units-measures</label>
+        <clr-combobox formControlName="unitsName" name="myState"  (clrSelectionChange)		="openChangeUnits($event)">
+          <clr-options>
+            <clr-option *clrOptionItems="let  unity of dataUnits; field: 'name'" [clrValue]="unity">
+              <!-- <cds-icon shape="world" role="img" aria-label="World is turning"></cds-icon> -->
+              <cds-icon shape="key"></cds-icon>
+              {{ unity.name }}
+            </clr-option>
+          </clr-options>
+        </clr-combobox>
+       
+        <clr-control-error>There was an error</clr-control-error>
+      </clr-combobox-container>
+
+      <button clrStepButton="next">next</button>
+    </clr-step-content>
+  </clr-stepper-panel>
+
+  <clr-stepper-panel formGroupName="quantity">
+    <clr-step-title>Qunatity in stock</clr-step-title>
+    <clr-step-content *clrIfExpanded>
+      <clr-input-container>
+        <label> Qunatity </label>
+        <input type="number" clrInput formControlName="detailQunatity" />
+      </clr-input-container>
+      <clr-input-container>
+        <label for="picture">Image:</label>
+        <!-- <input type="file"(change)="picked($event)" placeholder="Upload file"formControlName="picture" accept="*" /> -->
+        <input type="file"
+             (change)="picked($event)"
+             placeholder="Upload file"
+             accept="*">
+        <clr-control-error *clrIfError="'required'">Image est obligatoire</clr-control-error>
+      </clr-input-container>
+      <label class="btn btn-link">
+          <input type="file"
+                 (change)="picked($event)"
+                 placeholder="Upload file"
+                 accept="*">
+          Attach Files
+      </label>
+      <div *ngFor="let item of pictureArray ;let i=index" class="clr-col-12 clr-col-sm-3  clr-col-md-4  clr-col-lg-4  clr-col-xl-2   img">
+          <div class="card clickable" >
+            <div class="card-img container">
+              <div class="clr-row clr-justify-content-between">
+                <div class="clr-col-4">
+                  <span class="label label-success" *ngIf="item.defaults == true">Principale</span>
+                </div>
+                <div class="clr-justify-content-end">
+                  <span>
+                    <button type="button" class="btn btn-icon btn-warning btn-sm delete-icon" aria-label="warning"
+                      (click)="deletePicAction(item)">
+                      <clr-icon shape="times"></clr-icon>
+                    </button>
+                  </span>
+                </div>
+              </div>
+              <img [src]="item.url">
+            </div>
+          </div>
+        </div>
+    </clr-step-content>
+  </clr-stepper-panel>
+
+
+  <div class="btn-group btn-outline-primary">
+    <button class="btn btn-sm" routerLink="../../" [disabled]="!show">
+      <clr-icon shape="undo"></clr-icon> Back
+    </button>
+    <button class="btn btn-sm"   type="submit" [disabled]="form.invalid|| show" >
+      <clr-icon shape="plus"></clr-icon> Save
+    </button>
+ 
+
+</div>
+
+
+
+
+
+
+
+</form>

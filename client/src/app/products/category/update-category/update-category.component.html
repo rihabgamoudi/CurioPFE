@@ -1,0 +1,53 @@
+<span>
+    <span><a routerLink="../../">Category</a></span> /
+    <span><a>Update</a></span>
+</span>
+<section>
+    <h3>Update Category</h3>
+    <clr-alert clrAlertType="success" *ngIf="show" >
+      <clr-alert-item>
+       
+        Addition of Category {{name}} was successfully completed
+     
+      </clr-alert-item>  
+    </clr-alert>
+    <br>   
+     
+    <form clrForm [formGroup]="categoryForm" (ngSubmit)="submit()" >
+        <clr-input-container> 
+            <label>Name*</label>
+            <input clrInput type="text"  formControlName="name"    required/>
+            <clr-control-error  > This field is required ! </clr-control-error> 
+        </clr-input-container>
+        <clr-textarea-container>
+          <label>Description*</label>
+          <textarea clrTextarea  formControlName="description" required></textarea>
+        </clr-textarea-container>
+        <clr-toggle-container>
+          <label>status *</label>
+
+          <clr-toggle-wrapper>
+            <input type="checkbox" clrToggle value="option1"  formControlName="status" />
+            
+          </clr-toggle-wrapper>
+        </clr-toggle-container>
+      
+      
+         <br>
+        <label class="alert-sm">* This field is required ! </label>
+        <br><br>
+
+        <div class="btn-group btn-outline-primary">
+            <button class="btn btn-sm" routerLink="../../" [disabled]="!show" >
+              <clr-icon shape="undo"></clr-icon> Back
+            </button>
+            <button class="btn btn-sm" type="submit" [disabled]="categoryForm.invalid|| show">
+              <clr-icon shape="plus"></clr-icon> Save
+            </button>
+            <!-- <button class="btn btn-sm" [disabled]="!show" (click)="categoryForm.reset()">
+              <clr-icon shape="plus"></clr-icon> Create new
+            </button> -->
+
+        </div>
+    </form>
+</section>

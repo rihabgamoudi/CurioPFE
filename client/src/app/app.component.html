@@ -1,0 +1,12 @@
+
+<clr-main-container  class="main-container">
+  <app-header  *ngIf="showMenu" ></app-header>
+  <div class="content-container">
+    <div class="content-area espace">
+      <router-outlet ></router-outlet>
+    </div>
+    <clr-vertical-nav  *ngIf="showMenu" class="navTaille" [clrVerticalNavCollapsible]="true" [clrVerticalNavCollapsed]="clrVerticalNavCollapsed" [clr-nav-level]="1">
+      <app-side-nav ></app-side-nav>
+    </clr-vertical-nav>
+  </div>
+</clr-main-container>

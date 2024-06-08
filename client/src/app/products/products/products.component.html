@@ -1,0 +1,55 @@
+<b style="font-size: 3em; color: rgb(0, 0, 0); margin: 10px;">Product</b>
+<br><br>
+<div class="btn-group btn-primary">
+    <button routerLink="add-product" [disabled]="selectedProduct.length>0" class="btn">Add</button>
+    <button routerLink="update-product/{{id}}" [disabled]="selectedProduct.length>1 || selectedProduct.length==0" class="btn btn-success">Modify</button>
+    <button class="btn btn-danger"  [disabled]="selectedProduct.length==0"  (click)="showClick()">Delete</button>
+  </div>
+  
+  
+  <clr-datagrid (clrDgRefresh)="refresh($event)"  [(clrDgSelected)]="selectedProduct"  (clrDgSelectedChange)="productSelect($event)">
+      <clr-dg-column>product ID</clr-dg-column>
+      <clr-dg-column>Name</clr-dg-column>
+      <clr-dg-column>description</clr-dg-column>
+      <clr-dg-column>Picture</clr-dg-column>
+      <clr-dg-column>createAt</clr-dg-column>
+   
+      <clr-dg-row *clrDgItems="let product of data" [clrDgItem]="data"  [clrDgItem]="product">
+        <clr-dg-cell>{{product.id}}</clr-dg-cell>
+        <clr-dg-cell>{{product.name}}</clr-dg-cell> 
+        <clr-dg-cell>{{product.description}}</clr-dg-cell>
+        <clr-dg-cell><img [src]="product.pictures[0]?.url" alt="Product Image" width="50"></clr-dg-cell>
+        <clr-dg-cell>{{product.createAt}}</clr-dg-cell>
+
+      </clr-dg-row>  
+      <clr-dg-detail *clrIfDetail="let detail">
+        <clr-dg-detail-header> <b style=" color: rgb(60, 58, 230)">id</b>:{{ detail.id }}</clr-dg-detail-header>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">Name</b>:{{ detail.name }}</clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">Description</b> :{{ detail.description }}</clr-dg-detail-body>
+        <clr-dg-detail-body> <b  style=" color:rgb(60, 58, 230)">priceHorsTax</b> :{{ detail.priceHorsTax }}</clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">priceTTC</b> :{{ detail.priceTTC }}</clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">Quantity</b> : {{ detail?.productDetail?.[0]?.quantity }} </clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">Color</b> : {{ detail?.productDetail?.[0]?.color }} </clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">Category</b> : {{ detail?.productDetail?.[0]?.categoryId.name }} </clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">Accessoire</b> : {{ detail?.productDetail?.[0]?.accessoireId.name}} </clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">Mark</b> : {{ detail?.productDetail?.[0]?.markId.name }} </clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">Units</b> : {{ detail?.productDetail?.[0]?.unitsId.name }} </clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">Price</b> :<b>Name</b> : {{ detail?.productDetail?.[0]?.priceId.name }} <b>Value</b> : {{ detail?.productDetail?.[0]?.priceId.priceExcludingTax }} </clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">Units</b> : {{ detail?.productDetail?.[0]?.unitsId.name }} </clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">createAt</b> :{{ detail.createAt }}</clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">updateAt</b> :{{ detail.updateAt }}</clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">Active</b> :{{ detail.isActive }}</clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">createBy</b> :{{ detail.createBy }}</clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">updatedBy</b> :{{ detail.updatedBy }}</clr-dg-detail-body>
+     
+
+      </clr-dg-detail>
+      
+   
+  
+      <clr-dg-footer></clr-dg-footer>
+  </clr-datagrid>
+     
+  <app-delete-product *ngIf="show" [listProduct]="list" (closed)="close()" (saved)="save()"></app-delete-product>
+  
+     

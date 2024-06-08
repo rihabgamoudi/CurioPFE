@@ -1,0 +1,43 @@
+<b style="font-size: 3em; color: rgb(0, 0, 0); margin: 10px;">Mark</b>
+<br><br>
+<div class="btn-group btn-primary">
+    <button routerLink="add" [disabled]="selectedMark.length>0" class="btn">Add</button>
+    <button routerLink="update/{{id}}" [disabled]="selectedMark.length>1|| selectedMark.length==0"  class="btn btn-success">Modify</button>
+    <button class="btn btn-danger"  [disabled]="selectedMark.length==0"  (click)="showClick()">Delete</button>
+  </div>
+  
+  
+  <clr-datagrid (clrDgRefresh)="refresh($event)"  [(clrDgSelected)]="selectedMark"  (clrDgSelectedChange)="markSelect($event)">
+      <clr-dg-column>Mark ID</clr-dg-column>
+      <clr-dg-column>Name</clr-dg-column>
+      <clr-dg-column>Description</clr-dg-column>
+      <clr-dg-column>CreateAt</clr-dg-column>
+      <clr-dg-column>Picture</clr-dg-column>
+      <clr-dg-row *clrDgItems="let mark of data" [clrDgItem]="data"  [clrDgItem]="mark">
+        
+        <clr-dg-cell>{{mark.id}}</clr-dg-cell>
+        <clr-dg-cell>{{mark.name}}</clr-dg-cell> 
+        <clr-dg-cell>{{mark.description}}</clr-dg-cell>
+        <clr-dg-cell>{{mark.createAt}}</clr-dg-cell>
+        <clr-dg-cell><img [src]="mark.pictures[0]?.url" alt="mark Image" width="50"></clr-dg-cell>
+      </clr-dg-row>  
+      <clr-dg-detail *clrIfDetail="let detail">
+        <clr-dg-detail-header> <b style=" color: rgb(60, 58, 230)">id</b>:{{ detail.id }}</clr-dg-detail-header>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">Name</b>:{{ detail.name }}</clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">Description</b> :{{ detail.description }}</clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">Status</b> :{{ detail.status }}</clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">Picture</b> :{{ detail.image }}</clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">createAt</b> :{{ detail.createAt }}</clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">updateAt</b> :{{ detail.updateAt }}</clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">Active</b> :{{ detail.isActive }}</clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">createBy</b> :{{ detail.createBy }}</clr-dg-detail-body>
+        <clr-dg-detail-body> <b style=" color: rgb(60, 58, 230)">updatedBy</b> :{{ detail.updatedBy }}</clr-dg-detail-body>
+      </clr-dg-detail>
+      
+    
+      <clr-dg-footer></clr-dg-footer>
+  </clr-datagrid>
+  
+  <app-delete-mark *ngIf="show"  [listMark]="list" (closed)="close()" (saved)="save()"></app-delete-mark> 
+  
+    

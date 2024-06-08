@@ -1,0 +1,78 @@
+
+<div class="login-wrapper">
+   
+    <div class="login-header">
+      <div class="logo"></div>
+      <div class="actions">
+       
+      </div>
+    </div>
+    <br>
+    <div class="login-body">
+      <section class="title">
+        <div class="welcome">Welcome to</div>
+         IOCurio
+        <br>
+  
+      </section>
+      <clr-alert *ngIf="show"clrAlertType="success">
+        <clr-alert-item>
+          <span class="alert-text">This alert indicates a success!</span>
+        </clr-alert-item>
+      </clr-alert>
+      <clr-alert *ngIf="showError" clrAlertType="danger" >
+        <clr-alert-item>
+          <span class="alert-text">     {{ message }} 
+          </span>
+        </clr-alert-item>
+      </clr-alert>
+      
+    <form clrForm  [formGroup]="authForm" (ngSubmit)="login()">
+        <clr-input-container>
+          <label class="clr-sr-only">E-mail</label>
+          <input
+           clrInput type="email"
+            autocomplete="email"
+            name="email"
+            placeholder="Enter e-mail"
+            formControlName="email"
+          />
+          <clr-control-error *clrIfError="'required'">Email is required</clr-control-error>
+           <clr-control-error *clrIfError="'email'">Invalid email format</clr-control-error>
+        </clr-input-container>
+        <clr-password-container>
+          <label class="clr-sr-only">Password</label>
+          <input 
+            type="password"
+            autocomplete="current-password"
+            name="password"
+            clrPassword
+            placeholder="Enter password"
+            formControlName="password"
+          />
+          <clr-control-error *clrIfError="'required'">Password is required</clr-control-error>
+          <clr-control-error *clrIfError="'minlength'">Password must be at least 6 characters</clr-control-error>
+          <clr-control-error *clrIfError="'maxlength'">Password cannot exceed 20 characters</clr-control-error>
+        </clr-password-container>
+        <br>
+        <clr-checkbox-wrapper>
+          <label>Remember me</label>
+          <input type="checkbox" name="rememberMe" clrCheckbox formControlName="rememberMe" />
+      
+        </clr-checkbox-wrapper>
+        <button type="submit" [disabled]="authForm.invalid|| show"  class="btn btn-primary">Log in</button>
+      </form>
+      <br>
+        <a href="javascript://" class="signup">login for an account</a>
+      </div>
+      <br>
+    </div>
+    
+    <div class="login-footer">
+      <span class="copyright">2023 VMware, Inc.</span>
+      <a href="javascript://">Terms</a>
+      <a href="javascript://">Privacy</a>
+      <a href="javascript://">California Privacy Rights</a>
+    </div>  
+  
+  

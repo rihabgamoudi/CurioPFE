@@ -1,0 +1,89 @@
+<span>
+    <span><a routerLink="../">Mark</a></span> /
+    <span><a>Add</a></span>
+</span>
+<section>
+    <h3>Add Mark</h3>
+    <clr-alert clrAlertType="success" *ngIf="show" >
+      <clr-alert-item>
+       
+        Addition of Mark {{name}} was successfully completed
+     
+      </clr-alert-item> 
+    </clr-alert>
+    <br>
+      
+    <form clrForm [formGroup]="markForm" (ngSubmit)="submit()" >
+        <clr-input-container>
+            <label>Name*</label>
+            <input clrInput type="text"  formControlName="name"   required/>
+            <clr-control-error  > This field is required ! </clr-control-error> 
+        </clr-input-container>
+        <clr-textarea-container>
+          <label>Description*</label>
+          <textarea clrTextarea  formControlName="description" required></textarea>
+        </clr-textarea-container>
+        <clr-toggle-container>
+          <label>Status *</label>
+
+          <clr-toggle-wrapper>
+            <input type="checkbox" clrToggle value="option1"  formControlName="status" />
+            
+          </clr-toggle-wrapper>
+        </clr-toggle-container>
+        <clr-input-container>
+          <label for="picture">Picture:</label>
+          <!-- <input type="file"(change)="picked($event)" placeholder="Upload file"formControlName="picture" accept="*" /> -->
+          <input type="file"
+               (change)="picked($event)"
+               placeholder="Upload file"
+               accept="*">
+          <clr-control-error *clrIfError="'required'">This field is required !</clr-control-error>
+        </clr-input-container>
+        <label class="btn btn-link">
+            <input type="file"
+                   (change)="picked($event)"
+                   placeholder="Upload file"
+                   accept="*">
+            Attach Files
+        </label>
+        <div *ngFor="let item of pictureArray ;let i=index" class="clr-col-12 clr-col-sm-3  clr-col-md-4  clr-col-lg-4  clr-col-xl-2   img">
+            <div class="card clickable" >
+              <div class="card-img container">
+                <div class="clr-row clr-justify-content-between">
+                  <div class="clr-col-4">
+                    <span class="label label-success" *ngIf="item.defaults == true">Principale</span>
+                  </div>
+                  <div class="clr-justify-content-end">
+                    <span>
+                      <button type="button" class="btn btn-icon btn-warning btn-sm delete-icon" aria-label="warning"
+                        (click)="deletePicAction(item)">
+                        <clr-icon shape="times"></clr-icon>
+                      </button>
+                    </span>
+                  </div>
+                </div>
+                <img [src]="item.url">
+              </div>
+            </div>
+          </div>
+      
+     
+         <br>
+        <label class="alert-sm">* This field is required ! </label>
+        <br><br>
+
+        <div class="btn-group btn-outline-primary">
+            <button class="btn btn-sm" routerLink="../" [disabled]="!show">
+              <clr-icon shape="undo"></clr-icon> Back
+            </button>
+            <button class="btn btn-sm"   type="submit" [disabled]="markForm.invalid|| show" >
+              <clr-icon shape="plus"></clr-icon> Save
+            </button>
+            <button class="btn btn-sm"[disabled]="!show" (click)="reset()">
+              <clr-icon shape="plus"></clr-icon> Create new
+            </button>
+
+        </div>
+    </form>
+</section>

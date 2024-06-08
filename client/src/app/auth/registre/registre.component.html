@@ -1,0 +1,100 @@
+
+<div class="login-wrapper">
+   
+    <div class="login-header">
+      <div class="logo"></div>
+      <div class="actions">
+      </div>
+    </div>
+    <div class="login-body">
+      <section class="title">
+        <div class="welcome">Welcome to</div>
+        IOCurio
+        <br>
+    
+      </section>
+      <section>
+      <clr-alert *ngIf="show" clrAlertType="success" >
+        <clr-alert-item>
+          <span class="alert-text">has been successfully created</span>
+        </clr-alert-item>
+      </clr-alert>
+      <div>{{ message }}</div>
+      <clr-alert *ngIf="showError" clrAlertTyp="danger">
+        <clr-alert-item>
+          <span class="alert-text">This alert indicates a error!</span>
+        </clr-alert-item>
+      </clr-alert>
+      <div>{{ message }}</div> 
+
+    <form clrForm  [formGroup]="authForm" (ngSubmit)="Onsubmit()">
+        <clr-select-container>
+          <label>User Role</label>
+          <select clrSelect name="role"formControlName="role"> 
+            <option value="admin">Administrator</option>
+            <option value="local">Empolyer</option>
+          </select>
+        </clr-select-container>
+        <clr-input-container>
+          <label class="clr-sr-only">Name</label>
+          <input formControlName="name" 
+           clrInput type="text"
+            autocomplete="name"
+            name="name"
+            placeholder="Enter name"
+          />
+          <clr-control-error *clrIfError="'required'">invalid  full Name</clr-control-error>
+        </clr-input-container>
+        <clr-input-container>
+          <label class="clr-sr-only">Email</label>
+          <input formControlName="email" 
+           clrInput type="email"
+            autocomplete="email"
+            name="email"
+            placeholder="Enter e-mail"
+          />
+          <clr-control-error *clrIfError="'required'">invalid  full Name</clr-control-error>
+        </clr-input-container>
+        <clr-password-container>
+          <label class="clr-sr-only">Password</label>
+          <input
+            type="password"
+            autocomplete="current-password"
+            name="password"
+            clrPassword
+            placeholder="Enter password"
+            formControlName="password"
+          />
+          <clr-control-error *clrIfError="'required'">invalid Password</clr-control-error>
+        </clr-password-container>
+        <clr-password-container>
+            <label class="clr-sr-only">Password Confirme</label>
+            <input
+              type="password"
+              autocomplete="current-password"
+              name="confirmPassword"
+              clrPassword
+              placeholder="Confirm password"
+              formControlName="confirmPassword"
+            />
+            <clr-control-error *clrIfError="'required'">invalid Password</clr-control-error>
+          </clr-password-container>
+        <clr-checkbox-wrapper>
+          <label>Remember me</label>
+          <input type="checkbox" name="rememberMe" clrCheckbox formControlName="rememberMe" />
+      
+        </clr-checkbox-wrapper>
+        <button type="submit" [disabled]="authForm.invalid|| show" class="btn btn-primary">Register in</button>
+
+      </form>
+    </section>
+        <a href="javascript://" class="signup"> login for an account</a>
+      </div>
+    </div>
+    <div class="login-footer">
+      <span class="copyright">2024 Curiosity Agency, Inc.</span>
+  
+    </div>
+  
+  
+ 

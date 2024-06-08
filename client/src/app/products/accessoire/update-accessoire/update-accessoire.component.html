@@ -1,0 +1,59 @@
+<span>
+    <span><a routerLink="../../">Accessory</a></span> /
+    <span><a>Modify</a></span>
+</span>
+<section>
+    <h3>Modify Accessory</h3>
+    <clr-alert clrAlertType="success" *ngIf="show" >
+        <clr-alert-item>
+         
+          Addition of Accessory {{name}} was successfully completed
+       
+        </clr-alert-item> 
+      </clr-alert> 
+    <br> 
+    
+    <form clrForm [formGroup]="accessoireForm"  (ngSubmit)="submit()">
+        <clr-input-container>
+            <label>Name*</label>
+            <input clrInput type="text"  formControlName="name"   required/>
+            <clr-control-error  > This field is required ! </clr-control-error> 
+        </clr-input-container>
+        <clr-textarea-container>
+          <label>Description*</label>
+          <textarea clrTextarea  formControlName="description" ></textarea>
+        </clr-textarea-container>
+   
+        <clr-toggle-container>
+          <label>Status *</label>
+
+          <clr-toggle-wrapper>
+            <input type="checkbox" clrToggle value="option1"  formControlName="status" />
+            
+          </clr-toggle-wrapper>
+        </clr-toggle-container>
+
+  
+    <clr-select-container>
+      <label>Marteriaux</label>
+      <select clrSelect name="options"formControlName="materiaux" required>
+        <option  *ngFor="let item of liste" value="{{item}}">{{item}}</option>
+       
+      </select>
+    </clr-select-container>
+         <br>
+        <label class="alert-sm">* This field is required ! </label>
+        <br><br>
+
+        <div class="btn-group btn-outline-primary">
+            <button class="btn btn-sm"  routerLink="../../" [disabled]="!show">
+              <clr-icon shape="undo"></clr-icon> Back
+            </button>
+            <button class="btn btn-sm"  type="submit" [disabled]="accessoireForm.invalid|| show"  >
+              <clr-icon shape="plus"></clr-icon> Save
+            </button>
+           
+
+        </div>
+    </form>
+</section>
